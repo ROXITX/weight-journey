@@ -1,0 +1,239 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─────────────────────────────────────────────────────────────
+   THEME — all colours live here. Light = :root, Dark = .dark
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --c-bg: #f4f5f9;
+  --c-card: #ffffff;
+  --c-card-2: #eef0f6;
+  --c-line: rgba(15, 23, 42, 0.08);
+  --c-text: #0b0d12;
+  --c-muted: #667085;
+  --c-primary: #10b981;
+  --c-primary-2: #059669;
+  --c-secondary: #3b82f6;
+  --c-accent: #8b5cf6;
+  --c-warning: #f59e0b;
+  --c-danger: #ef4444;
+  --c-water: #0ea5e9;
+  --c-pink: #ec4899;
+  --c-orange: #f97316;
+  --c-glass: rgba(255, 255, 255, 0.72);
+  --c-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px -8px rgba(16, 24, 40, 0.12);
+
+  /* Consistency heatmap: 0% → 100% */
+  --heat-0: #e3e6ee;
+  --heat-1: #fde2c4;
+  --heat-2: #fcd34d;
+  --heat-3: #a3e635;
+  --heat-4: #34d399;
+  --heat-5: #059669;
+}
+
+.dark {
+  --c-bg: #08090b;
+  --c-card: #111318;
+  --c-card-2: #181b22;
+  --c-line: rgba(255, 255, 255, 0.07);
+  --c-text: #f3f5f9;
+  --c-muted: #8a93a6;
+  --c-glass: rgba(17, 19, 24, 0.7);
+  --c-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 12px 32px -12px rgba(0, 0, 0, 0.7);
+
+  --heat-0: #1b1f27;
+  --heat-1: #4a2a1a;
+  --heat-2: #7c5a12;
+  --heat-3: #3f6b1d;
+  --heat-4: #0f8a5f;
+  --heat-5: #22e39a;
+}
+
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-card: var(--c-card);
+  --color-card-2: var(--c-card-2);
+  --color-line: var(--c-line);
+  --color-ink: var(--c-text);
+  --color-muted: var(--c-muted);
+  --color-primary: var(--c-primary);
+  --color-primary-2: var(--c-primary-2);
+  --color-secondary: var(--c-secondary);
+  --color-accent: var(--c-accent);
+  --color-warning: var(--c-warning);
+  --color-danger: var(--c-danger);
+  --color-water: var(--c-water);
+  --color-pink: var(--c-pink);
+  --color-orange: var(--c-orange);
+  --font-display: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+html,
+body {
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--c-primary) 35%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-primary);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+/* Inputs */
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='date'],
+input[type='time'] {
+  color-scheme: light;
+}
+.dark input[type='date'],
+.dark input[type='time'] {
+  color-scheme: dark;
+}
+
+/* Reusable surfaces */
+@utility card {
+  background: var(--c-card);
+  border: 1px solid var(--c-line);
+  border-radius: 1.5rem;
+  box-shadow: var(--c-shadow);
+}
+@utility glass {
+  background: var(--c-glass);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid var(--c-line);
+}
+@utility field {
+  width: 100%;
+  background: var(--c-card-2);
+  border: 1px solid var(--c-line);
+  border-radius: 0.9rem;
+  padding: 0.75rem 0.9rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  &:focus {
+    border-color: var(--c-primary);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--c-primary) 18%, transparent);
+  }
+}
+@utility text-gradient {
+  background: linear-gradient(110deg, var(--c-primary), var(--c-secondary) 55%, var(--c-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+@utility pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* Ambient aurora background */
+.aurora {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.aurora::before,
+.aurora::after {
+  content: '';
+  position: absolute;
+  width: 60vmax;
+  height: 60vmax;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.16;
+  animation: drift 22s ease-in-out infinite alternate;
+}
+.aurora::before {
+  background: var(--c-primary);
+  top: -30vmax;
+  left: -20vmax;
+}
+.aurora::after {
+  background: var(--c-secondary);
+  bottom: -35vmax;
+  right: -25vmax;
+  animation-delay: -11s;
+}
+.dark .aurora::before,
+.dark .aurora::after {
+  opacity: 0.13;
+}
+@keyframes drift {
+  to {
+    transform: translate(8vmax, 6vmax) scale(1.15);
+  }
+}
+
+/* Shimmer for skeletons */
+.skeleton {
+  background: linear-gradient(90deg, var(--c-card-2) 0%, color-mix(in srgb, var(--c-card-2) 60%, var(--c-line)) 50%, var(--c-card-2) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* Recharts tweaks */
+.recharts-cartesian-grid line {
+  stroke: var(--c-line);
+}
+.recharts-text {
+  fill: var(--c-muted);
+  font-size: 11px;
+}
+.recharts-tooltip-cursor {
+  stroke: var(--c-line);
+}
+.recharts-wrapper *:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
