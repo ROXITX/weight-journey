@@ -12,10 +12,10 @@
  */
 const CONFIG = {
   // Firebase Console → Project settings → General → Project ID
-  FIREBASE_PROJECT_ID: 'your-firebase-project-id',
+  FIREBASE_PROJECT_ID: 'weight-loss-rohith',
 
   // Your deployed app URL (GitHub Pages). Used for the links in every email.
-  APP_URL: 'https://your-github-username.github.io/your-repo/',
+  APP_URL: 'https://roxitx.github.io/weight-journey/',
 
   // Limit reminders to these Firebase UIDs. Empty = every user who enabled reminders in the app.
   ONLY_UIDS: [],
