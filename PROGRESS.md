@@ -34,7 +34,7 @@ npm run build
 1. Verify desktop + light-mode layout (was mid-check; Habits name wrap fix not yet re-viewed)
 2. ~~google-apps-script~~ ✅ done (see Done list above)
 3. Docs: README.md, FIREBASE_SETUP.md, DEPLOYMENT.md, ARCHITECTURE.md, HOW_TO_CHANGE_USERS.md (EMAIL_SETUP.md ✅)
-4. `git init` + GitHub repo + `npm run deploy`
+4. ~~GitHub + deploy~~ ✅ repo https://github.com/ROXITX/weight-journey · live https://roxitx.github.io/weight-journey/ (Firebase project `weight-loss-rohith`, `.env` local only). Redeploy: `npm run deploy`
 5. Optional: rules unit tests with emulator (esp. friends rules), Lighthouse pass
 6. Friends with Firebase: verify on real project (two phones) — code lookup, mutual follow, remove
 
